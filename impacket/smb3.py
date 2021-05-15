@@ -1151,9 +1151,11 @@ class SMB3:
         if (treeId in self._Session['TreeConnectTable']) is False:
             raise SessionError(STATUS_INVALID_PARAMETER)
 
-        fileName = fileName.replace('/', '\\')
+            
+            
+#         fileName = fileName.replace('/', '\\') Should be comment!
         if len(fileName) > 0:
-            fileName = ntpath.normpath(fileName)
+#             fileName = ntpath.normpath(fileName) Should be comment!
             if fileName[0] == '\\':
                 fileName = fileName[1:]
 
@@ -1194,11 +1196,12 @@ class SMB3:
         smb2Create['ShareAccess']          = shareMode
         smb2Create['CreateDisposition']    = creationDisposition
         smb2Create['CreateOptions']        = creationOptions
-        
-        # use this to avoid some MYTH error
-        if fileName.count('\\')>=2:
-            fileName=fileName.replace('\\','/')
-            fileName='/'+fileName
+
+#         I commented above two lines to solve that problem
+#         use this to avoid some MYTH error
+#         if fileName.count('\\')>=2:
+#             fileName=fileName.replace('\\','/')
+#             fileName='/'+fileName
         
         print(fileName)
         
