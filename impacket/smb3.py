@@ -1194,7 +1194,14 @@ class SMB3:
         smb2Create['ShareAccess']          = shareMode
         smb2Create['CreateDisposition']    = creationDisposition
         smb2Create['CreateOptions']        = creationOptions
-
+        
+        # use this to avoid some MYTH error
+        if fileName.count('\\')>=2:
+            fileName=fileName.replace('\\','/')
+            fileName='/'+fileName
+        
+        print(fileName)
+        
         smb2Create['NameLength']           = len(fileName)*2
         if fileName != '':
             smb2Create['Buffer']           = fileName.encode('utf-16le')
